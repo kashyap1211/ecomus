@@ -1,0 +1,55 @@
+@import "tailwindcss";
+#root {
+  margin: "0px";
+  padding: "0px";
+
+}
+
+
+/* styles.css */
+.bg-hero-sm {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW21ybZpvQbKHPVdkj2ZD5r585eoV0Z4xXOA&s');
+}
+
+@media (min-width: 768px) {
+  .bg-hero-sm {
+    background-image: url('https://themesflat.co/html/ecomus/images/slider/fashion-slideshow-01.jpg');
+  }
+}
+
+.bg-hero-2 {
+  background-image: url('../src//assets//images/Untitled.jpg');
+}
+
+@media (min-width: 768px) {
+  .bg-hero-2 {
+    background-image: url('https://themesflat.co/html/ecomus/images/slider/fashion-slideshow-02.jpg');
+  }
+}
+
+
+.bg-hero-3 {
+ 
+    background-image: url('../src//assets//images/Untitled.jpg');
+}
+
+@media (min-width: 768px) {
+  .bg-hero-3 {
+     background-image: url('https://themesflat.co/html/ecomus/images/slider/fashion-slideshow-03.jpg');
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  min-width: 200%;
+  animation: marquee 30s linear infinite;
+}
