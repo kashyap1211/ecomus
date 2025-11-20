@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:5000/api/shopgram";
+const API = "https://ecomus-3udj.onrender.com/api/shopgram";
 
 // Fetch all products
 export const fetchShopGram = async () => {

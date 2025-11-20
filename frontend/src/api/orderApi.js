@@ -46,7 +46,7 @@ import axios from "axios";
 // Place order
 export const placeOrder = async (orderData, token) => {
   try {
-    const res = await axios.post("http://localhost:5000/api/orders", orderData, {
+    const res = await axios.post("https://ecomus-3udj.onrender.com/api/orders", orderData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -60,7 +60,7 @@ export const placeOrder = async (orderData, token) => {
 // Get user orders
 export const fetchUserOrders = async (token) => {
   try {
-    const res = await axios.get("http://localhost:5000/api/orders", {
+    const res = await axios.get("https://ecomus-3udj.onrender.com/api/orders", {
       headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;
