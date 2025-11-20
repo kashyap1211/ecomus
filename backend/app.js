@@ -167,7 +167,7 @@ const app = express();
 // ✅ CORS setup
 const allowedOrigins = [
   "https://ecomus-uxgv.vercel.app", // Vercel frontend URL
-  "http://localhost:3000"           // local development
+  
 ];
 
 app.use(cors({
