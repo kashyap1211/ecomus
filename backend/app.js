@@ -166,14 +166,13 @@ const app = express();
 
 // ✅ CORS setup
 const allowedOrigins = [
-  "https://ecomus-uxgv.vercel.app", // Vercel frontend URL
-  "ecomus-uxgv-git-main-kashyaps-projects-0a7d093d.vercel.app",
-"ecomus-uxgv-ovgdsu97d-kashyaps-projects-0a7d093d.vercel.app"
-  
+  "https://ecomus-uxgv.vercel.app", // main Vercel frontend
+  "https://ecomus-uxgv-git-main-kashyaps-projects-0a7d093d.vercel.app",
+  "https://ecomus-uxgv-ovgdsu97d-kashyaps-projects-0a7d093d.vercel.app"
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
