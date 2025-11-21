@@ -1,70 +1,87 @@
-// import axios from "axios";
+// // import axios from "axios";
 
-// const API_URL = "http://localhost:5000/api/orders";
+// // const API_URL = "http://localhost:5000/api/orders";
 
-// // 🔹 Get orders for a user
-// export const fetchUserOrders = async (token) => {
-//   const { data } = await axios.get(API_URL, {
-//     headers: {
-//       Authorization: `Bearer ${token}`, // send JWT token
-//     },
-//   });
-//   return data;
+// // // 🔹 Get orders for a user
+// // export const fetchUserOrders = async (token) => {
+// //   const { data } = await axios.get(API_URL, {
+// //     headers: {
+// //       Authorization: `Bearer ${token}`, // send JWT token
+// //     },
+// //   });
+// //   return data;
+// // // };
+// // import axios from "axios";
+
+// // const token = localStorage.getItem("token"); // store JWT after login
+
+// // // Place order
+// // const placeOrder = async (orderData) => {
+// //   try {
+// //     const res = await axios.post("http://localhost:5000/api/orders", orderData, {
+// //       headers: {
+// //         Authorization: `Bearer ${token}`,
+// //       },
+// //     });
+// //     console.log("Order placed:", res.data);
+// //   } catch (error) {
+// //     console.error("Error placing order:", error.response?.data || error.message);
+// //   }
 // // };
-// import axios from "axios";
 
-// const token = localStorage.getItem("token"); // store JWT after login
+// // // Get orders
+// // const fetchOrders = async () => {
+// //   try {
+// //     const res = await axios.get("http://localhost:5000/api/orders", {
+// //       headers: { Authorization: `Bearer ${token}` },
+// //     });
+// //     console.log("Orders:", res.data);
+// //   } catch (error) {
+// //     console.error("Error fetching orders:", error.response?.data || error.message);
+// //   }
+// // };
+// // src/api/orderApi.js
+// import axios from "axios";
 
 // // Place order
-// const placeOrder = async (orderData) => {
+// export const placeOrder = async (orderData, token) => {
 //   try {
-//     const res = await axios.post("http://localhost:5000/api/orders", orderData, {
+//     const res = await axios.post(process.env.REACT_APP_API_URL + "/api"|| "http://localhost:5000/api", orderData, {
 //       headers: {
 //         Authorization: `Bearer ${token}`,
 //       },
 //     });
-//     console.log("Order placed:", res.data);
+//     return res.data;
 //   } catch (error) {
-//     console.error("Error placing order:", error.response?.data || error.message);
+//     throw error.response?.data || error.message;
 //   }
 // };
 
-// // Get orders
-// const fetchOrders = async () => {
+// // Get user orders
+// export const fetchUserOrders = async (token) => {
 //   try {
-//     const res = await axios.get("http://localhost:5000/api/orders", {
+//     const res = await axios.get(process.env.REACT_APP_API_URL + "/api"|| "http://localhost:5000/api", {
 //       headers: { Authorization: `Bearer ${token}` },
 //     });
-//     console.log("Orders:", res.data);
+//     return res.data;
 //   } catch (error) {
-//     console.error("Error fetching orders:", error.response?.data || error.message);
+//     throw error.response?.data || error.message;
 //   }
 // };
-// src/api/orderApi.js
-import axios from "axios";
+import API from "../utils/api";
 
 // Place order
 export const placeOrder = async (orderData, token) => {
-  try {
-    const res = await axios.post("https://ecomus-3udj.onrender.com/api" || "http://localhost:5000/api", orderData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return res.data;
-  } catch (error) {
-    throw error.response?.data || error.message;
-  }
+  const { data } = await API.post("/orders", orderData, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  return data;
 };
 
 // Get user orders
 export const fetchUserOrders = async (token) => {
-  try {
-    const res = await axios.get("https://ecomus-3udj.onrender.com/api" || "http://localhost:5000/api", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return res.data;
-  } catch (error) {
-    throw error.response?.data || error.message;
-  }
+  const { data } = await API.get("/orders", {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  return data;
 };

@@ -1,14 +1,20 @@
-// contactApi.js
-export const sendContact = async (data) => {
-  const res = await fetch(process.env.REACT_APP_API_URL || "http://localhost:5000/api", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
+// // contactApi.js
+// export const sendContact = async (data) => {
+//   const res = await fetch(process.env.REACT_APP_API_URL + "/api" || "http://localhost:5000/api", {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(data),
+//   });
 
-  if (!res.ok) {
-    throw new Error("Failed to send message");
-  }
+//   if (!res.ok) {
+//     throw new Error("Failed to send message");
+//   }
 
-  return res.json();
+//   return res.json();
+// };
+import API from "../utils/api";
+
+export const sendContact = async (body) => {
+  const { data } = await API.post("/contact", body);
+  return data;
 };
