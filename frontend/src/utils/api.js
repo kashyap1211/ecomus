@@ -18,15 +18,29 @@
 // export default API;
 import axios from "axios";
 
-// Detect Base URL
+const getDefaultApiBase = () => {
+  if (typeof window !== "undefined") {
+    const host = window.location.hostname;
+    if (host === "localhost" || host === "127.0.0.1") {
+      return "http://localhost:5000";
+    }
+  }
+  return "https://ecomus-3udj.onrender.com";
+};
+
 const API_BASE =
   (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) ||
   (typeof process !== "undefined" && process.env?.REACT_APP_API_URL) ||
-  "http://localhost:5000";
+  getDefaultApiBase();
+
+const normalizeBaseUrl = (base) => {
+  if (!base) return "http://localhost:5000/api";
+  return base.endsWith("/api") ? base : `${base.replace(/\/$/, "")}/api`;
+};
 
 // Create axios instance with backend /api base
 const API = axios.create({
-  baseURL: `${API_BASE}/api`,
+  baseURL: normalizeBaseUrl(API_BASE),
 });
 
 // Attach token automatically
